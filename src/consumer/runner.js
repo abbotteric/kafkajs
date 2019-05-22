@@ -86,7 +86,7 @@ module.exports = class Runner {
       await this.join()
 
       this.running = true
-      setImmediate(this.scheduleFetch())
+      setImmediate(() => this.scheduleFetch())
     } catch (e) {
       this.onCrash(e)
     }
@@ -302,7 +302,7 @@ module.exports = class Runner {
           })
 
           await this.join()
-          setImmediate(this.scheduleFetch())
+          setImmediate(() => this.scheduleFetch())
           return
         }
 
@@ -317,12 +317,12 @@ module.exports = class Runner {
 
           this.consumerGroup.memberId = null
           await this.join()
-          setImmediate(this.scheduleFetch())
+          setImmediate(() => this.scheduleFetch())
           return
         }
 
         if (e.name === 'KafkaJSOffsetOutOfRange') {
-          setImmediate(this.scheduleFetch())
+          setImmediate(() => this.scheduleFetch())
           return
         }
 
